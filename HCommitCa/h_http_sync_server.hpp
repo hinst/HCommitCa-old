@@ -26,6 +26,11 @@
 
 #include <iostream>
 
+#include "Web.h"
+class prepare;
+class prepare;
+using namespace hca::Web;
+
 namespace beast {
 namespace http {
 
@@ -82,7 +87,7 @@ public:
         }
     }
 
-    std::function<response<string_body>(request<string_body>)> handleRequest;
+    std::function<void(TRequest, TResponse)> handleRequest;
 
 private:
     void
@@ -156,25 +161,25 @@ private:
         error_code ec;
         for(;;)
         {
-            req_type req;
-            http::read(sock, sb, req, ec);
+            TRequest req(new req_type());
+            http::read(sock, sb, *req, ec);
             if(ec)
                 break;
-            auto path = req.url;
+            auto path = req->url;
             if(path == "/")
                 path = "/index.html";
             path = root_ + path;
             try
             {
-                resp_type res;
-                res.status = 200;
-                res.reason = "OK";
-                res.version = req.version;
-                res.fields.insert("Server", "http_sync_server");
-                res.fields.insert("Content-Type", mime_type(path));
-                res.body = path;
-                prepare(res);
-                write(sock, res, ec);
+                TResponse res(new response<string_body>());
+                res->status = 200;
+                res->reason = "OK";
+                res->version = req->version;
+                res->fields.insert("Server", "http_sync_server");
+                res->fields.insert("Content-Type", mime_type(path));
+                res->body = path;
+                prepare(*res);
+                write(sock, *res, ec);
                 if(ec)
                     break;
                 return;
@@ -184,7 +189,7 @@ private:
                 response<string_body> res;
                 res.status = 500;
                 res.reason = "Internal Error";
-                res.version = req.version;
+                res.version = req->version;
                 res.fields.insert("Server", "http_sync_server");
                 res.fields.insert("Content-Type", "text/html");
                 res.body =
