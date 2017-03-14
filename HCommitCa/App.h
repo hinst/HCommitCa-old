@@ -1,7 +1,5 @@
 #pragma once
 
-#include "h_http_sync_server.hpp"
-
 namespace hca { namespace App {
 
 using namespace std;

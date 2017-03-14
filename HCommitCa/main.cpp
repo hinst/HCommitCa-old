@@ -1,5 +1,10 @@
 #include <stdio.h>
 #include <string>
+#include <memory>
+#include "h_http_sync_server.hpp"
+
+#include "Web.h"
+using namespace hca::Web;
 #include "App.h"
 
 using namespace std;

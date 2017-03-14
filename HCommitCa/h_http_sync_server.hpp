@@ -164,21 +164,6 @@ private:
             if(path == "/")
                 path = "/index.html";
             path = root_ + path;
-            if(! boost::filesystem::exists(path))
-            {
-                response<string_body> res;
-                res.status = 404;
-                res.reason = "Not Found";
-                res.version = req.version;
-                res.fields.insert("Server", "http_sync_server");
-                res.fields.insert("Content-Type", "text/html");
-                res.body = "The file '" + path + "' was not found";
-                prepare(res);
-                write(sock, res, ec);
-                if(ec)
-                    break;
-                return;
-            }
             try
             {
                 resp_type res;
@@ -192,6 +177,7 @@ private:
                 write(sock, res, ec);
                 if(ec)
                     break;
+                return;
             }
             catch(std::exception const& e)
             {
