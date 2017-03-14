@@ -5,6 +5,8 @@
   <VirtualDirectory Name="src">
     <File Name="main.cpp"/>
     <File Name="App.h"/>
+    <File Name="Web.h"/>
+    <File Name="h_http_sync_server.hpp"/>
   </VirtualDirectory>
   <Settings Type="Executable">
     <GlobalSettings>
