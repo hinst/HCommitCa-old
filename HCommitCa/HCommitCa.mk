@@ -13,7 +13,7 @@ CurrentFileName        :=
 CurrentFilePath        :=
 CurrentFileFullPath    :=
 User                   :=savinykh.a
-Date                   :=10/03/2017
+Date                   :=14/03/2017
 CodeLitePath           :="C:/Program Files/CodeLite"
 LinkerName             :=C:/TDM-GCC-32/bin/g++.exe
 SharedObjectLinkerName :=C:/TDM-GCC-32/bin/g++.exe -shared -fPIC
@@ -41,9 +41,9 @@ LinkOptions            :=
 IncludePath            :=  $(IncludeSwitch). $(IncludeSwitch). $(IncludeSwitch)C:\Dev\boost_1_63_0 $(IncludeSwitch)C:\Dev\Beast-1.0\include $(IncludeSwitch)C:\Dev\Beast-1.0\examples 
 IncludePCH             := 
 RcIncludePath          := 
-Libs                   := 
-ArLibs                 :=  
-LibPath                := $(LibraryPathSwitch). 
+Libs                   := $(LibrarySwitch)boost_system-mgw51-sd-1_63 $(LibrarySwitch)ws2_32 
+ArLibs                 :=  "libboost_system-mgw51-sd-1_63.a" "ws2_32" 
+LibPath                := $(LibraryPathSwitch). $(LibraryPathSwitch)C:\Dev\boost_1_63_0\stage\lib 
 
 ##
 ## Common variables
