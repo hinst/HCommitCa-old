@@ -80,6 +80,11 @@ $(OutputFile): $(IntermediateDirectory)/.d $(Objects)
 	@echo $(Objects0)  > $(ObjectsFileList)
 	$(LinkerName) $(OutputSwitch)$(OutputFile) @$(ObjectsFileList) $(LibPath) $(Libs) $(LinkOptions)
 
+PostBuild:
+	@echo Executing Post Build commands ...
+	copy /Y Debug\HCommitCa.exe ..\HCommitCa.exe
+	@echo Done
+
 MakeIntermediateDirs:
 	@$(MakeDirCommand) "./Debug"
 
