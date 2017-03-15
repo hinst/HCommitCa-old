@@ -38,11 +38,11 @@ MakeDirCommand         :=makedir
 RcCmpOptions           := 
 RcCompilerName         :=C:/TDM-GCC-32/bin/windres.exe
 LinkOptions            :=  
-IncludePath            :=  $(IncludeSwitch). $(IncludeSwitch). $(IncludeSwitch)C:\Dev\boost_1_63_0 $(IncludeSwitch)C:\Dev\Beast-1.0\include $(IncludeSwitch)C:\Dev\Beast-1.0\examples 
+IncludePath            :=  $(IncludeSwitch). $(IncludeSwitch). $(IncludeSwitch)C:\Dev\boost_1_63_0 $(IncludeSwitch)C:\Dev\Beast-1.0\include $(IncludeSwitch)C:\Dev\Beast-1.0\examples $(IncludeSwitch)C:\Dev\Beast-1.0\extras 
 IncludePCH             := 
 RcIncludePath          := 
-Libs                   := $(LibrarySwitch)boost_system-mgw51-sd-1_63 $(LibrarySwitch)ws2_32 
-ArLibs                 :=  "libboost_system-mgw51-sd-1_63.a" "ws2_32" 
+Libs                   := $(LibrarySwitch)boost_system-mgw51-sd-1_63 $(LibrarySwitch)ws2_32 $(LibrarySwitch)wsock32 
+ArLibs                 :=  "libboost_system-mgw51-sd-1_63.a" "ws2_32" "wsock32" 
 LibPath                := $(LibraryPathSwitch). $(LibraryPathSwitch)C:\Dev\boost_1_63_0\stage\lib 
 
 ##
@@ -52,7 +52,7 @@ LibPath                := $(LibraryPathSwitch). $(LibraryPathSwitch)C:\Dev\boost
 AR       := C:/TDM-GCC-32/bin/ar.exe rcu
 CXX      := C:/TDM-GCC-32/bin/g++.exe
 CC       := C:/TDM-GCC-32/bin/gcc.exe
-CXXFLAGS :=  -g -O0 -std=c++11 -Wall -DBOOST_SYSTEM_NO_DEPRECATED $(Preprocessors)
+CXXFLAGS :=  -g -O0 -std=c++11 -Wall -D_WIN32_WINNT=0x0501 $(Preprocessors)
 CFLAGS   :=  -g -O0 -Wall $(Preprocessors)
 ASFLAGS  := 
 AS       := C:/TDM-GCC-32/bin/as.exe

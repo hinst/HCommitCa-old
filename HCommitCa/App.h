@@ -1,5 +1,7 @@
 #pragma once
 
+#include "include.h"
+
 namespace hca { namespace App {
 
 using namespace std;
@@ -8,10 +10,13 @@ class App {
 
 public: 
 	string dir = "";
+    shared_ptr<WebServer> server;
 
 	void run() {
-		boost::asio::ip::tcp::endpoint endpoint{boost::asio::ip::address::from_string("0.0.0.0"), 8080};
-		beast::http::http_sync_server server(endpoint, this->getWebDir());
+		server = make_shared<WebServer>();
+		server->start();
+		beast::test::sig_wait();
+		server->stop();
 	}
 
 	string getWebDir() {

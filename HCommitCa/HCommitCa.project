@@ -8,6 +8,7 @@
     <File Name="Web.h"/>
     <File Name="h_http_sync_server.hpp"/>
     <File Name="WebServer.h"/>
+    <File Name="include.h"/>
   </VirtualDirectory>
   <Settings Type="Executable">
     <GlobalSettings>
@@ -20,16 +21,18 @@
       <ResourceCompiler Options=""/>
     </GlobalSettings>
     <Configuration Name="Debug" CompilerType="MinGW ( TDM-GCC-32 )" DebuggerType="GNU gdb debugger" Type="Executable" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
-      <Compiler Options="-g;-O0;-std=c++11;-Wall;-DBOOST_SYSTEM_NO_DEPRECATED" C_Options="-g;-O0;-Wall" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" PCHFlags="" PCHFlagsPolicy="0">
+      <Compiler Options="-g;-O0;-std=c++11;-Wall;-D_WIN32_WINNT=0x0501" C_Options="-g;-O0;-Wall" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" PCHFlags="" PCHFlagsPolicy="0">
         <IncludePath Value="."/>
         <IncludePath Value="C:\Dev\boost_1_63_0"/>
         <IncludePath Value="C:\Dev\Beast-1.0\include"/>
         <IncludePath Value="C:\Dev\Beast-1.0\examples"/>
+        <IncludePath Value="C:\Dev\Beast-1.0\extras"/>
       </Compiler>
       <Linker Options="" Required="yes">
         <LibraryPath Value="C:\Dev\boost_1_63_0\stage\lib"/>
         <Library Value="libboost_system-mgw51-sd-1_63.a"/>
         <Library Value="ws2_32"/>
+        <Library Value="wsock32"/>
       </Linker>
       <ResourceCompiler Options="" Required="no"/>
       <General OutputFile="$(IntermediateDirectory)/$(ProjectName)" IntermediateDirectory="./Debug" Command="./$(ProjectName)" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="$(IntermediateDirectory)" PauseExecWhenProcTerminates="yes" IsGUIProgram="no" IsEnabled="yes"/>

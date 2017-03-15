@@ -25,8 +25,8 @@
 #include <utility>
 
 #include <iostream>
-
 #include "Web.h"
+
 class prepare;
 class prepare;
 using namespace hca::Web;
@@ -73,6 +73,7 @@ public:
         error_code ec;
         ios_.dispatch(
             [&]{ acceptor_.close(ec); });
+        printf("server: waiting for thread...\n");
         thread_.join();
     }
 
@@ -178,7 +179,8 @@ private:
                 res->fields.insert("Server", "http_sync_server");
                 res->fields.insert("Content-Type", "text/plain");
                 res->body = req->url;
-                this->handleRequest(req, res);
+                if (handleRequest != nullptr)
+                    handleRequest(req, res);
                 prepare(*res);
                 write(sock, *res, ec);
                 if(ec)
@@ -192,9 +194,9 @@ private:
                 res.reason = "Internal Error";
                 res.version = req->version;
                 res.fields.insert("Server", "http_sync_server");
-                res.fields.insert("Content-Type", "text/html");
+                res.fields.insert("Content-Type", "text/plain");
                 res.body =
-                    std::string{"An internal error occurred: "} + e.what();
+                    std::string{"An internal error occurred: "} + e.what() + "\n" + boost::diagnostic_information(e);
                 prepare(res);
                 write(sock, res, ec);
                 if(ec)

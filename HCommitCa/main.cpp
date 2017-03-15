@@ -1,9 +1,4 @@
-#include <iostream>
-#include <string>
-#include <memory>
-#include "h_http_sync_server.hpp"
-#include "WebServer.h"
-#include "App.h"
+#include "include.h"
 
 using namespace std;
 using namespace hca::App;
@@ -13,5 +8,7 @@ int main(int argc, char *argv[])
 	cout << "[STARTING...]\n";
 	App app;
 	app.dir = string(argv[0]);
+	app.run();
+	cout << "[EXITING...]\n";
 	return 0;
 }

@@ -1,3 +1,7 @@
+#pragma once
+
+#include "include.h"
+
 namespace hca { namespace Web {
 	
 class WebServer {
@@ -10,8 +14,13 @@ public:
 
 	void start() {
 		boost::asio::ip::tcp::endpoint endpoint{boost::asio::ip::address::from_string(address), port};
-		beast::http::http_sync_server server(endpoint, "");
+		server = make_shared<beast::http::http_sync_server>(endpoint, "");
 	}
+	
+	void stop() {
+		this->server = nullptr;
+	}
+
 };
 
 }}
