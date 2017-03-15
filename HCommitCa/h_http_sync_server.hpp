@@ -87,7 +87,7 @@ public:
         }
     }
 
-    std::function<void(TRequest, TResponse)> handleRequest;
+    std::function<void(shared_ptr<WebRequest>, shared_ptr<WebResponse>)> handleRequest;
 
 private:
     void
@@ -161,7 +161,7 @@ private:
         error_code ec;
         for(;;)
         {
-            TRequest req(new req_type());
+            auto req = make_shared<req_type>();
             http::read(sock, sb, *req, ec);
             if(ec)
                 break;
@@ -171,13 +171,14 @@ private:
             path = root_ + path;
             try
             {
-                TResponse res(new response<string_body>());
+                auto res = make_shared<WebResponse>();
                 res->status = 200;
                 res->reason = "OK";
                 res->version = req->version;
                 res->fields.insert("Server", "http_sync_server");
-                res->fields.insert("Content-Type", mime_type(path));
-                res->body = path;
+                res->fields.insert("Content-Type", "text/plain");
+                res->body = req->url;
+                this->handleRequest(req, res);
                 prepare(*res);
                 write(sock, *res, ec);
                 if(ec)

@@ -2,6 +2,7 @@
 #include <string>
 #include <memory>
 #include "h_http_sync_server.hpp"
+#include "WebServer.h"
 #include "App.h"
 
 using namespace std;
