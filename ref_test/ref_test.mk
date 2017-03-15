@@ -3,10 +3,10 @@
 ## any manual changes will be erased      
 ##
 ## Debug
-ProjectName            :=HCommitCa
+ProjectName            :=ref_test
 ConfigurationName      :=Debug
 WorkspacePath          :=C:/Dev/HCommitCa/HCommitCa
-ProjectPath            :=C:/Dev/HCommitCa/HCommitCa
+ProjectPath            :=C:/Dev/HCommitCa/ref_test
 IntermediateDirectory  :=./Debug
 OutDir                 := $(IntermediateDirectory)
 CurrentFileName        :=
@@ -32,18 +32,18 @@ Preprocessors          :=
 ObjectSwitch           :=-o 
 ArchiveOutputSwitch    := 
 PreprocessOnlySwitch   :=-E
-ObjectsFileList        :="HCommitCa.txt"
+ObjectsFileList        :="ref_test.txt"
 PCHCompileFlags        :=
 MakeDirCommand         :=makedir
 RcCmpOptions           := 
 RcCompilerName         :=C:/TDM-GCC-32/bin/windres.exe
 LinkOptions            :=  
-IncludePath            :=  $(IncludeSwitch). $(IncludeSwitch). $(IncludeSwitch)C:\Dev\boost_1_63_0 $(IncludeSwitch)C:\Dev\Beast-1.0\include $(IncludeSwitch)C:\Dev\Beast-1.0\examples 
+IncludePath            :=  $(IncludeSwitch). $(IncludeSwitch). 
 IncludePCH             := 
 RcIncludePath          := 
-Libs                   := $(LibrarySwitch)boost_system-mgw51-sd-1_63 $(LibrarySwitch)ws2_32 
-ArLibs                 :=  "libboost_system-mgw51-sd-1_63.a" "ws2_32" 
-LibPath                := $(LibraryPathSwitch). $(LibraryPathSwitch)C:\Dev\boost_1_63_0\stage\lib 
+Libs                   := 
+ArLibs                 :=  
+LibPath                := $(LibraryPathSwitch). 
 
 ##
 ## Common variables
@@ -52,7 +52,7 @@ LibPath                := $(LibraryPathSwitch). $(LibraryPathSwitch)C:\Dev\boost
 AR       := C:/TDM-GCC-32/bin/ar.exe rcu
 CXX      := C:/TDM-GCC-32/bin/g++.exe
 CC       := C:/TDM-GCC-32/bin/gcc.exe
-CXXFLAGS :=  -g -O0 -std=c++11 -Wall -DBOOST_SYSTEM_NO_DEPRECATED $(Preprocessors)
+CXXFLAGS :=  -g -O0 -std=c++11 -Wall $(Preprocessors)
 CFLAGS   :=  -g -O0 -Wall $(Preprocessors)
 ASFLAGS  := 
 AS       := C:/TDM-GCC-32/bin/as.exe
@@ -80,11 +80,6 @@ $(OutputFile): $(IntermediateDirectory)/.d $(Objects)
 	@echo $(Objects0)  > $(ObjectsFileList)
 	$(LinkerName) $(OutputSwitch)$(OutputFile) @$(ObjectsFileList) $(LibPath) $(Libs) $(LinkOptions)
 
-PostBuild:
-	@echo Executing Post Build commands ...
-	copy /Y Debug\HCommitCa.exe ..\HCommitCa.exe
-	@echo Done
-
 MakeIntermediateDirs:
 	@$(MakeDirCommand) "./Debug"
 
@@ -99,7 +94,7 @@ PreBuild:
 ## Objects
 ##
 $(IntermediateDirectory)/main.cpp$(ObjectSuffix): main.cpp $(IntermediateDirectory)/main.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Dev/HCommitCa/HCommitCa/main.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IncludePath)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Dev/HCommitCa/ref_test/main.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/main.cpp$(DependSuffix): main.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/main.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/main.cpp$(DependSuffix) -MM main.cpp
 
